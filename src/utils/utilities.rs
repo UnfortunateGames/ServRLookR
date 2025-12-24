@@ -6,5 +6,5 @@ pub fn inputf(message: &str) -> String {
     io::stdout().flush().unwrap();
     io::stdin().read_line(&mut output).unwrap();
     
-    output
+    output.trim().to_string()
 }

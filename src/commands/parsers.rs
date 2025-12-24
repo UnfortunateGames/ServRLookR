@@ -1,6 +1,6 @@
 use crate::commands::types::*;
 
-fn parse_2_u32(parameter: &str, full_command: &str) -> Result<u32, CommandError> {
+pub fn parse_2_u32(parameter: &str, full_command: &str) -> Result<u32, CommandError> {
     parameter
         .parse::<u32>()
         .map_err(
@@ -11,7 +11,7 @@ fn parse_2_u32(parameter: &str, full_command: &str) -> Result<u32, CommandError>
         )
 }
 
-fn parse_commands(commands: &str) -> Result<Vec<Command>, CommandError> {
+pub fn parse_commands(commands: &str) -> Result<Vec<Command>, CommandError> {
     let mut command_list: Vec<Command> = Vec::new();
     let mut trimmed_command: String;
     let mut tokens: Vec<&str>;
@@ -50,6 +50,22 @@ fn parse_commands(commands: &str) -> Result<Vec<Command>, CommandError> {
                     )?
                 })
             ),
+            ["shutdown", uid] => command_list.push(
+                Command::Shutdown(ID{
+                    0: parse_2_u32(
+                        uid,
+                        &trimmed_command
+                    )?
+                })
+            ),
+            ["activate", uid] => command_list.push(
+                Command::Activate(ID{
+                    0: parse_2_u32(
+                        uid,
+                        &trimmed_command
+                    )?
+                })
+            ),
             ["add"] => command_list.push(
                 Command::Add
             ),
@@ -69,13 +85,8 @@ fn parse_commands(commands: &str) -> Result<Vec<Command>, CommandError> {
                     )?
                 })
             ),
-            ["read", uid] => command_list.push(
-                Command::Edit(ID{
-                    0: parse_2_u32(
-                        uid,
-                        &trimmed_command
-                    )?
-                })
+            ["read", path] => command_list.push(
+                Command::Read(path.to_string())
             ),
             ["wait", seconds] => command_list.push(
                 Command::Wait(
@@ -87,7 +98,7 @@ fn parse_commands(commands: &str) -> Result<Vec<Command>, CommandError> {
             ),
             _ => return Err(
                 CommandError::InvalidCommand(
-                    trimmed_command
+                    format!("{} is not a valid command!", trimmed_command)
                 )
             )
         }
