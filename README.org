@@ -2,7 +2,7 @@
 #+AUTHOR: ESplash
 
 * About ServRLookR
-This is a project, that was once a CLI, which is what [[ServRViewR][https://github.com/elsplashServRViewR]]
+This is a project, that was once a CLI, which is what [[https://github.com/elsplashServRViewR][ServRViewR]]
 is based on. This project is now a TUI, built with ~ratatui~, and is now asynchronous with ~tokio~.
 
 This is simply a mock server caller, which can:
