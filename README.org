@@ -1,0 +1,114 @@
+#+TITLE: ServRLookR
+#+AUTHOR: ESplash
+
+* About ServRLookR
+This is a project, that was once a CLI, which is what [[ServRViewR][https://github.com/elsplashServRViewR]]
+is based on. This project is now a TUI, built with ~ratatui~, and is now asynchronous with ~tokio~.
+
+This is simply a mock server caller, which can:
+
+- Create Servers
+- Edit Servers
+- Call Servers
+- Run Servers
+- Shutdown/Activate Servers
+
+* Changelog
+
+=User-Side=
+- Changed from CLI, to TUI
+- Made input handling asynchronous
+- Added new commands
+  1. Echo
+  2. Clear
+  3. Version
+
+=Dev-Side=
+- Made the command handling less intuitive
+- Command handling resembles the basic shell interpreter
+- Whole lot of shit in ~servdat.rs~
+  Probably organize them for version 3
+- Better output
+
+* Future implementations +Goals for me+
+#+begin_quote
+This will now replace all the satire /Goals for me/.
+#+end_quote
+
+- [ ] Implement the asynchronous command running (~&~ and ~|~)
+  This is the main reason why I made this project to be asynchronous in the first place.
+  The reason why I didn't is because I would have to refactor all the core components,
+  and waste much more of my allotted time for this.
+- [ ] ~out_print~ function should be separate from ~LookerState~
+  Yep, I should have thought of this sooner, though I guess I shouldn't waste more time
+  tweaking this codebase, enough is enough.
+- [ ] Sort out ~servdat.rs~
+  It's very messy, even if you're an unknowing bystander, you'd know that is literally too\
+  much.
+
+* How to run the program
+
+To run the program in the first place, you'd need Rust, to compile this.
+
+** Windows
+For windows, you need the C++ build tools given by *Visual Studio*, then fetch the rustup
+executable in the official [[Rust Installation page][https://rust-lang.org/tools/install/]]
+then I think you can guess what to do next after running the executable.
+
+** Linux
+It is rather simple to install rust, by just installing it via your package manager.
+
+=Debian-based Systems=:
+#+begin_src bash
+sudo apt install rust
+#+end_src
+
+=Arch Linux=:
+#+begin_src bash
+sudo pacman -Sy rust
+#+end_src
+
+=Fedora=:
+#+begin_src bash
+sudo dnf install rust
+#+end_src
+
+** MacOS
+This has 2 options.
+
+You may curl from the script provided by the official Rust Installation Page,
+by running this: ~curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh~.
+
+Or you may use HomeBrew, which is as simple as using a package manager in Linux:
+~brew install rustup-init~, and then run it: ~rustup-init~.
+
+** After installing Rust
+You can now either run from source, or build from source.
+
+To run from source, simply do: ~cargo run -r~. The ~-r~ means run/build on release,
+which would stop ~cargo~ from running/building on debug.
+
+And same goes for building: ~cargo build -r~. This will create an executable located
+in ~SOURCE/target/release~, ~SOURCE~ is just the folder of the repository, which is
+~ServRLookR~.
+
+* Usage
+I have implemented the help command, so you may use that now. There are no strings
+attached, you can just type in a command, like ~help~, which will display in the
+upper right panel.
+
+There is also a hint below the input bar if you don't want to read this ~README~.
+
+* Review
+Using Rust is like chains being broken by C/C++'s madness from messy code. I really
+like how intuitive the interface is for these libraries, just how programming needs
+to be, in general.
+
+Though I do have some criticism, very minor. I once got stuck at the Ratatui example
+of getting the next event, like ~event.next().fuse()~. The errors were not helping, I mean,
+I did know the code given in the Async example were Rust pseudocode, so I thought maybe I had
+to implement this? But no, all it needed, was a ~futures~ library trait. Maybe I was stupid
+for depending on ~rust-analyzer~ for this, but whatever.
+
+Either way, implementing this was rather fun to say the least, this was a very intuitive
+making of this project, and I do hope the others will be too.
