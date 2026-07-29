@@ -2,7 +2,7 @@
 #+AUTHOR: ESplash
 
 * About ServRLookR
-This is a project, that was once a CLI, which is what [[https://github.com/elsplashServRViewR][ServRViewR]]
+This is a project, that was once a CLI, which is what [[https://github.com/elsplash/ServRViewR][ServRViewR]]
 is based on. This project is now a TUI, built with ~ratatui~, and is now asynchronous with ~tokio~.
 
 This is simply a mock server caller, which can:
@@ -43,7 +43,7 @@ This will now replace all the satire /Goals for me/.
   Yep, I should have thought of this sooner, though I guess I shouldn't waste more time
   tweaking this codebase, enough is enough.
 - [ ] Sort out ~servdat.rs~
-  It's very messy, even if you're an unknowing bystander, you'd know that is literally too\
+  It's very messy, even if you're an unknowing bystander, you'd know that is literally too
   much.
 
 * How to run the program
